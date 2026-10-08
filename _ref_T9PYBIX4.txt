@@ -1,0 +1,1607 @@
+=== PAGE 1 ===
+Jiang et al. 
+Chinese Journal of Mechanical Engineering           (2025) 38:69  
+https://doi.org/10.1186/s10033-025-01250-6
+ORIGINAL ARTICLE
+Open Access
+© The Author(s) 2025. Open Access  This article is licensed under a Creative Commons Attribution 4.0 International License, which 
+permits use, sharing, adaptation, distribution and reproduction in any medium or format, as long as you give appropriate credit to the 
+original author(s) and the source, provide a link to the Creative Commons licence, and indicate if changes were made. The images or 
+other third party material in this article are included in the article’s Creative Commons licence, unless indicated otherwise in a credit line 
+to the material. If material is not included in the article’s Creative Commons licence and your intended use is not permitted by statutory 
+regulation or exceeds the permitted use, you will need to obtain permission directly from the copyright holder. To view a copy of this 
+licence, visit http://​creat​iveco​mmons.​org/​licen​ses/​by/4.​0/.
+Chinese Journal of Mechanical Engineering
+Performance Analysis and Prediction of Rock 
+Cutting with a Rotating Abrasive Water Jet
+Hongxiang Jiang1,2, Huihe Zhao1*   , Xiaodi Zhang1, Zijian Wu1 and Mingjin Zhao1 
+Abstract 
+During the excavation process of deep hard rock tunnels, precutting rock with an abrasive water jet can weaken 
+their strength and improve the efficiency of mining machinery. However, owing to the complex geological environ-
+ment, abrasive jets cannot fully utilize their rock-cutting performance. To fully exploit the advantages of high-pressure 
+abrasive water jets, five orthogonal experiments were designed for rocks with significant differences in strength. 
+Experimental research has been conducted on the performance of rotating abrasive waterjet-cutting rocks. Moreo-
+ver, a neural network prediction model for predicting rock-cutting characteristics is established by comprehensively 
+considering rock mechanics parameters and abrasive water jet parameters. The results show that the cutting depth 
+of rocks with different strengths increases nonlinearly with increasing work pressure of the abrasive water jet. The 
+cutting depth decreases exponentially with increasing cutting velocity. The cutting depth first increases and then 
+decreases with increasing target distance, and the best target distance is between 4 mm and 6 mm. The effect 
+of the target distance on the cutting width of rock is the most significant, but the cutting width of high-strength 
+rock is not sensitive to changes in the working parameters of the abrasive water jet. The average relative errors of BP 
+(backpropagation) neural networks optimized by global optimization algorithms in predicting rock cutting depth 
+and width are 13.3% and 5.4%, respectively. This research combines the working characteristics of mining machinery 
+to study the performance of abrasive waterjet rotary cutting of rocks and constructs a predictive model for the perfor-
+mance of abrasive waterjet cutting of rocks that includes rock strength factors. This provides a new solution for quickly 
+adjusting the working parameters of abrasive water jets according to mining conditions.
+Keywords  Abrasive water jet, Cutting rock, Performance, Prediction
+1  Introduction
+In the process of deep hard rock roadway excavation, 
+water jet precutting can reduce the difficulty of hard 
+rock breaking under a state of stress [1, 2]. In addition, 
+rock breaking assisted by water jets can reduce the load, 
+degree of wear, and surface temperature of mechanical 
+tools and extend their service life [3–6]. These findings 
+indicate that water jet impact rock-breaking technol-
+ogy has good application prospects in the field of deep 
+underground energy extraction. However, the dynamic 
+rotational rock-breaking performance of abrasive jets 
+and the rapid adjustment of working parameters when 
+encountering different types of underground rock layers 
+have not been thoroughly investigated. In particular, in 
+abrasive jet-assisted deep well petroleum drilling engi-
+neering, rock properties gradually change with increas-
+ing drilling depth [7]. At this point, adjusting the optimal 
+working parameters of the abrasive jet promptly without 
+stopping the equipment is necessary to achieve higher 
+drilling efficiency. Therefore, many scholars have inves-
+tigated the rock-breaking performance of abrasive water 
+jets. Kaya et  al. [8] studied the influence of the basic 
+*Correspondence:
+Huihe Zhao
+13419866018@163.com
+1 College of Mechanical and Electrical Engineering, China University 
+of Mining and Technology, Xuzhou 221116, China
+2 Jiangsu Collaborative Innovation Center of Intelligent Mining 
+Equipment, China University of Mining and Technology, Xuzhou 221008, 
+China
+
+=== PAGE 2 ===
+Page 2 of 18
+Jiang et al. Chinese Journal of Mechanical Engineering           (2025) 38:69 
+properties of abrasive particles and rocks on the cutting 
+depth and identified the types of abrasives with better 
+cutting performance and the rock attribute parameters 
+with a greater impact on the rock cutting depth. Oh and 
+Cho [9] suggested that the maximum cutting depth of 
+rocks with different hardnesses corresponds to the opti-
+mal mass concentration and target distance of the abra-
+sive water jet. Liu et al. [10] studied the effect of abrasive 
+water jet concentration on the crushing performance of 
+concrete and reported that the optimal concentration 
+for abrasive water jet impact crushing of concrete is 20%. 
+However, higher abrasive concentrations can acceler-
+ate nozzle wear. To improve the rock-breaking ability of 
+abrasive jets, many scholars have conducted research 
+from the perspective of jet dynamics. Wang et  al. [11] 
+verified that a slurry jet has a sufficiently high sand-carry-
+ing capacity by comparing the erosion effects of a slurry 
+jet and an abrasive jet. Mohammad Zadeh et al. [12, 13] 
+studied the effect of fluid viscosity on particle transport 
+and reported that high-viscosity and high-yield stress liq-
+uids have a relatively high transport capacity. From this 
+perspective, the fluid viscosity of an abrasive water jet 
+can be changed by adding additives during the process 
+of the abrasive water jet (AWJ) impacting rock breaking, 
+thereby improving the ability of the abrasive particles to 
+impact rock breaking.
+Although increasing fluid viscosity improves the sand-
+carrying capacity of abrasive jets, the flow characteristics 
+of liquids with higher viscosity are influenced by other 
+factors. For example, Akbari et  al. [14, 15] studied the 
+influence of temperature and pressure on the particle 
+transport performance of fluids with different viscosities 
+via the Herschel Bulkley model. The results revealed that 
+high temperatures and low pressures were not condu-
+cive to the transport of rock debris. Increasing fluid vis-
+cosity is a means of improving abrasive jet impact rock 
+breaking. Many factors affect the impact of abrasive jets 
+on rock breaking. Tan et al. [16] introduced the research 
+progress of abrasive jets from the aspects of multiphase 
+fluid dynamics, the material removal mechanism, and 
+enhancement methods of the auxiliary abrasive jet cut-
+ting effect. They noted that changing the type and size 
+of abrasive particles can improve the processing effect of 
+this technology by an order of magnitude. Hassan Zadeh 
+et al. [17] studied the effects of different parameters on 
+water jet behavior and reported that the yield stress of 
+the environmental fluid hinders the development of the 
+jet. Wu et  al. [18] studied the relevant factors affect-
+ing the mixing performance of multiphase flow via the 
+CFD‒DEM numerical simulation method. To provide 
+a numerical simulation method for studying the mix-
+ing effect of a premixed abrasive jet and improving the 
+rock-breaking effect of jet impact on rocks. Ren et al. [19] 
+studied the effects of the water jet impact velocity, inci-
+dent angle, abrasive particle diameter, and concentration 
+on the depth of rock fragmentation via numerical simu-
+lations and experimental comparison methods. Ozcelik 
+et al. [20] optimized the working parameters of a water 
+jet to cut depth and width and obtained a cutability chart 
+of a water jet cutting basalt. Liu et al. [21] reported that 
+the rock-breaking ability of a water jet was the best when 
+the incident angle was approximately 10°, and the rock-
+breaking efficiency increased in a stepwise manner with 
+increasing nozzle diameter. Li et  al. [22] demonstrated 
+that there was an optimal target distance for water jet 
+impact rock breaking and reported that the optimal 
+target distance was approximately 10 times the nozzle 
+diameter. Li et  al. [23] studied the process of abrasive 
+jet impact rock breaking via the SPH–FEM method and 
+concluded that the rock-breaking efficiency was highest 
+when the inclination angle of the particle jet was within 
+15°–20°. Wang et  al. [24] used the coupling method of 
+SPH-FEM to study the optimal parameter setting of 
+water jet-assisted TBM rock breaking. One of the conclu-
+sions is that the optimal nozzle diameter for a water jet is 
+1.5 mm.
+The above research shows that there is an optimal 
+working parameter for rock breaking by water jet impact, 
+and its value is closely related to the strength of the rock. 
+However, the energy consumption of abrasive water jets 
+in rock breaking is high, which limits their use in the 
+field of rock breaking to a certain extent [25]. Quickly 
+adjusting the working parameters of the abrasive water 
+jet according to geological conditions can significantly 
+reduce the rock-breaking energy consumption of the 
+abrasive water jet combined with machinery and greatly 
+improve the rock-breaking efficiency. However, the rela-
+tionship between the breaking characteristics of rock 
+(heterogeneous, anisotropic) and the working param-
+eters of abrasive water jet presented complex nonlinear 
+changes. It is difficult to accurately describe the relation-
+ship between the two by empirical. To solve this problem, 
+many scholars have researched the matching relationship 
+between jet parameters and rock-breaking characteris-
+tics using the methods of multiple linear and nonlinear 
+regression [26–30]. However, this method can only estab-
+lish corresponding prediction models for specific types 
+of rocks, and its generalization ability is poor. Therefore, 
+it is necessary to study the change rule of the breaking 
+index of rocks with different strengths with the working 
+parameters of the abrasive water jet. The neural network 
+prediction models have higher accuracy in predicting 
+abrasive jet characteristics, and they can be used to pre-
+dict various types of rocks [31–35]. The above research 
+indicates that neural network has strong nonlinear fitting 
+ability, and the BP neural network was applied earlier and 
+
+=== PAGE 3 ===
+Page 3 of 18
+Jiang et al. Chinese Journal of Mechanical Engineering           (2025) 38:69 
+	
+more widely. Many scholars use BP neural network mod-
+els to predict the cutting performance of abrasive water 
+jets [36–38]. Although this method solves the problems 
+of small prediction range and poor accuracy in abrasive 
+jet cutting performance, it still has certain limitations 
+(such as local optimization of BP neural network, sensi-
+tivity to initial weights, and low training efficiency).
+Therefore, many optimization algorithms have been 
+introduced to perfect the BP algorithm. Chen et al. [39] 
+used the mind-evolved advanced genetic algorithm 
+(MAGA) to improve the BP (backpropagation) neural 
+network and built a prediction model of water jet erosion 
+performance based on orthogonal experiment data. Deng 
+et al. [40] established a prediction model of abrasive water 
+jet cutting depth based on a BP neural network opti-
+mized by GA (genetic algorithm) and established a visual 
+module for predicting abrasive water jet cutting depth 
+through programming. Jiang et al. [41] established a BP 
+neural network prediction model optimized by adaptive 
+mutation particle swarm optimization (AMPSO) based 
+on experimental data of abrasive water jet cutting steel 
+plates. Yin et al. [42] constructed a neural network model 
+for sparrow search algorithm (SSA)-GA-BP based on 58 
+sets of experimental data, which showed small errors in 
+predicting the stability of the actual coal mine roof. Chen 
+et al. [43] used a GA-BP neural network to optimize the 
+structural parameters of the water jet nozzle and improve 
+its coal breaking and punching performance. Zhang [44] 
+established a rock burst level prediction model using a 
+hybrid particle swarm optimization (PSO)-BP algorithm, 
+and practical applications have proven that this method 
+can effectively predict the rock burst level of tunnels. Gu 
+et al. [45] compared and analyzed the performance of BP 
+neural networks optimized by GA, PSO, and normaliza-
+tion algorithms in reverse calculation of rock stress, and 
+obtained that the PSO-BP model had the fastest conver-
+gence speed and more stable results. Yan et al. [46] used 
+PSO to optimize the initial parameters of the BP neu-
+ral network, improving the stability and accuracy of its 
+inversion of stress results.
+According to this analysis, existing research on abrasive 
+jets impacting rock breaking has revealed that most rock 
+breaks in the form of fixed-point impact or parallel move-
+ment. However, geo-energy mining machinery (such as 
+pickaxe teeth, cutters, petroleum drilling machinery, and 
+shield machines) mostly breaks rock via rotation. Moreo-
+ver, many scholars only study specific types of rocks, and 
+the generalizability of their conclusions is weak. From 
+this, it can be concluded that there is still a certain gap in 
+the study of the performance of abrasive water jet rotary 
+rock cutting and the rapid adjustment of its working 
+parameters under complex geological conditions. There-
+fore, 5 types of rock (rocks with different hardnesses 
+corresponding to different geological conditions at differ-
+ent depths) were selected for the rotating abrasive water 
+jet cutting experiment. On this basis, the performance of 
+rotary abrasive jets in the cutting of rocks with different 
+hardnesses was analyzed to construct a predictive model 
+for rock during abrasive jet cutting, providing a solution 
+for quickly adjusting working parameters in engineering 
+applications.
+Overall, based on a comprehensive literature analy-
+sis, Section 1 elaborates on the lack of relevant research 
+on the dynamic rotation of abrasive water jets for rock 
+breaking in the existing literature. Combining with the 
+phenomenon of variable rock layers in actual deep geo-
+energy mining processes, a neural network prediction 
+model is proposed to quickly adjust the working param-
+eters of an abrasive water jet. Section 2 describes in detail 
+the principle, test device, and process of genetic algo-
+rithm and particle swarm optimization BP neural net-
+work, as well as the method of obtaining cutting data. 
+Section 3 analyzes the rock properties of abrasive water 
+jet rotating grooving. Section 4 compares GA-BP, PSO-
+BP, and BP neural networks (not optimized). Finally, the 
+conclusions are drawn in Section 5.
+2  Methods
+2.1  Acquisition and Processing of Experimental Data
+2.1.1  Experimental Methods
+To study the performance of premixed abrasive waterjet 
+rotating slotted rock, neural network training samples 
+are obtained. In this study, a premixed abrasive water jet 
+rotating rock cutting experimental platform was built 
+based on the existing experimental equipment. As shown 
+in Figure 1(a), the speed of the speed-regulating motor 
+and the direction of rotation were adjusted by the digital 
+display controller (400 W) to realize the premixed abra-
+sive water jet to rotate the slotted rock. The fixing bolt 
+was adjusted to change the initial target distance of the 
+abrasive water jet. The working pressure of the system 
+was controlled by the regulating valve. The nozzle diam-
+eter used in the experiment was 1 mm, and the rock size 
+was 300 mm×300 mm×100 mm. The pressure regulat-
+ing range of the high-pressure pump was 0–40 MPa, the 
+rotation speed adjustment range was 0.5–2.5 r/min, the 
+rotation radius was 346 mm, the target distance adjust-
+ment range was 2–10 mm, and the abrasive was 80 mesh 
+garnet. The cutting width on the rock surface was nar-
+row, and the groove formed by the premixed abrasive 
+water jet rotation cutting the rock was mostly V shaped, 
+so it was impossible to accurately measure the cutting 
+depth with a depth gauge. As shown in Figure 1(b), in this 
+study, a probe (very thin) was used to measure the rock-
+cutting depth indirectly, and a Vernier caliper was used 
+to measure the rock-cutting width directly. Owing to the 
+
+=== PAGE 4 ===
+Page 4 of 18
+Jiang et al. Chinese Journal of Mechanical Engineering           (2025) 38:69 
+inconvenience of using the upper part of a Vernier caliper 
+to measure the width of rock-cutting grooves and seams, 
+measurement errors can easily occur. The surface of the 
+rock is relatively flat, making it more convenient and 
+accurate to measure the lower part with a Vernier cali-
+per. Therefore, in this study, the groove width was meas-
+ured after premixed abrasive water jet cutting of rocks 
+through the lower half of the Vernier card.
+The specific experimental process was as follows. (1) 
+The sand supply valve of the abrasive tank was closed, 
+and 80 mesh quartz sand was added to it. (2) The initial 
+target distance was adjusted, and the sand supply valve of 
+the high-pressure pump and abrasive tank was opened. 
+(3) Adjust the cutting position under low pressure, the 
+premixed abrasive water jet was taken continuously at 
+the nozzle outlet, and its concentration was measured. 
+(4) The pressure of the pump station was increases, and 
+the digital display controller was adjusted to rotate the 
+cutting rock.
+2.1.2  Collection of Material Parameters
+The rock hardness almost always affects the excava-
+tion speed of rock tunnels in coal mines and the drilling 
+efficiency of oil wells. Under complex geological condi-
+tions, rock hardness may significantly differ at the work-
+ing face of rock tunnels. However, the optimal working 
+parameters of the abrasive jet are not the same when 
+rock samples with different hardnesses are cut. A predic-
+tion model with stronger applicability for rock hardness 
+can help quickly adjust the working parameters of abra-
+sive jets under different working conditions. Therefore, 
+in this work, several kinds of rock, which are commonly 
+encountered in tunnel excavation, are selected as samples 
+for the abrasive jet-cutting experiment. Granite, blue-
+stone, limestone, and sandstone can facilitate procure-
+ment in the stone market, whereas concrete is made by 
+us to increase the range of rock hardness and supplement 
+shallow geological conditions. There are two purposes for 
+conducting premixed abrasive water jet rotary cutting 
+experiments on various rocks in this study. (1) Exploring 
+the variation law of the cutting characteristics of differ-
+ent rock types as a function of premixed abrasive water 
+jet working parameters. (2) Providing training data for 
+constructing a rock-cutting prediction model that adapts 
+to complex geological conditions. The uniaxial compres-
+sive strength and tensile strength of rock are important 
+parameters for characterizing rock hardness, which 
+affects the difficulty of abrasives cutting rock. Therefore, 
+the mechanical performance parameters of rocks need 
+to be measured and recorded. The hardness of rocks var-
+ies under different geological conditions or geological 
+depths, which is manifested mainly in inconsistent uni-
+axial compressive strength and tensile strength. There-
+fore, this study selects five types of rock with significant 
+differences in hardness for cutting tests based on the rock 
+types commonly encountered in practical engineering. 
+Figure 2 shows the results of uniaxial and Brazilian split-
+ting tests for five different rock types.
+The specific values of the uniaxial compressive strength 
+and tensile strength of the test samples are shown in 
+Table  1. In engineering, rocks with a Vickers hardness 
+of f < 8 are usually classified as soft rocks, whereas rocks 
+with a Vickers hardness of f > 12 are classified as hard 
+rocks. This is not entirely the same as the law of rock’s 
+cutting characteristics of different hardnesses with the 
+working parameters of the abrasive jet. When data on 
+abrasive jet rotation rock cutting are processed, rock 
+hardness has an impact on the characteristics of rock 
+cutting, especially when the rock hardness f exceeds 10. 
+Moreover, there is a significant difference in the depth 
+and width of the cutting seam between harder and softer 
+rocks. Taken together, the curve of their variation with 
+Figure 1  Rotary slotted rock system by premixed AWJ and measuring methods
+
+=== PAGE 5 ===
+Page 5 of 18
+Jiang et al. Chinese Journal of Mechanical Engineering           (2025) 38:69 
+	
+the working parameters of the abrasive jet cannot dem-
+onstrate the variation in the cutting seam characteristics 
+of hard rocks with the parameters of the abrasive jet, 
+which in turn affects our in-depth analysis of the per-
+formance of abrasive jet rotary cutting of hard rocks. To 
+better analyze the crushing effect of rock with different 
+strengths under premixed abrasive water jet rotating cut-
+ting, granite and bluestone were classified as hard rock, 
+and the other materials were classified as soft rock.
+2.1.3  Measuring Cutting Parameters
+The width and depth of rock grooves are important indi-
+cators that affect rock fragmentation. To obtain more 
+comprehensive experimental data, four locations of rock 
+cuttings were measured in this study. As shown in Fig-
+ure 3, the cutting positions at angles of 90°, 85°, 80° and 
+75° between the premixed abrasive water jet and the 
+upper surface of the rock were taken for measurement. 
+To ensure the accuracy of the measurement data, we used 
+a probe with a tip thickness of less than 0.02 mm to assist 
+a Vernier caliper in measuring the depth of rock cutting. 
+First, we inserted the probe into the rock gap, marked it 
+with a marker pen, and measured the depth of the probe 
+into the rock gap through the Vernier caliper, indirectly 
+measuring the depth of rock cutting. To avoid acciden-
+tal operational errors, we repeat the measurements three 
+times at each measurement position, the average value 
+for recording, and the average value of the measurements 
+on both sides were taken for the symmetrical position.
+2.2  BP Neural Network and Optimization Algorithm
+A neural network prediction model based on obtaining a 
+large amount of experimental data. As shown in Figure 4, 
+the BP neural network includes an input layer, a hidden 
+layer, and an output layer. The loss function L was con-
+structed by accumulating the square of the difference 
+between the predicted value and the expected output. 
+According to the partial derivative of the loss function 
+to the weight and threshold, the prediction problem was 
+transformed into the problem of seeking the extreme 
+value of the loss function. By using the gradient descent 
+method to update the descent direction and speed in 
+real time, the minimum value of the loss function can be 
+quickly achieved.
+Figure 2  Compressive and tensile tests
+Table 1  Mechanical parameters of the experimental samples
+Rock
+Compressive strength (MPa)
+Tensile 
+strength 
+(MPa)
+Granite
+142
+10.9
+Bluestone
+122.2
+9.1
+Limestone
+78.2
+7.6
+Sandstone
+53.4
+3.7
+Concrete
+18.8
+3.2
+Figure 3  Schematic diagram of the rock cutting measurement 
+position
+Figure 4  Schematic diagram of the BP network structure 
+and gradient descent method
+
+=== PAGE 6 ===
+Page 6 of 18
+Jiang et al. Chinese Journal of Mechanical Engineering           (2025) 38:69 
+where e is the error function, L is the loss function, Y 
+is the desired output, O is the forecast output, S is the 
+transfer function of the output layer, s is the transfer 
+function of the hidden layer, H is the output of the hidden 
+layer, w is the weight, b is the output neuron threshold, a 
+is the threshold of the hidden layer neurons, and x is the 
+normalization value of the input layer neurons.
+During each iteration of solving the extremum of the 
+loss function, the BP neural network synchronously 
+updates its weight and threshold matrix. Partial differen-
+tiation is performed on the loss function separately, and 
+then the updated weights are calculated according to Eqs. 
+(5) and (6). If the value of the error e meets the iteration 
+requirements, the weights and thresholds of the neural 
+network are stopped, and the network model is saved and 
+output.
+where W and θ represent the weights and thresholds of 
+the neural network, respectively, and η is the gradient 
+descent rate.
+The step size of gradient descent corresponds to the 
+learning rate of the BP neural network, which usually 
+needs to be determined after the network has been 
+debugged many times. The loss function is usually com-
+plex (usually has a local extremum), which leads to the 
+failure of the BP neural network to reach the target 
+error after many trainings. To solve this problem, the 
+global optimization algorithm is often used to optimize 
+the BP neural network. The GA and PSO are two com-
+mon global optimization algorithms. Through adaptive 
+learning, they can optimize the weight and threshold 
+samples of the BP neural network and overcome the 
+problem that the BP neural network is prone to fall 
+into local optimization during training. As shown in 
+(1)
+ek = Yk −Ok,
+(2)
+L = e1
+2 + e2
+2 + ...em
+2 ,
+(3)
+Ok = S
+
+
+n1
+
+j=1
+Hjwjk −bk
+
+k = 1, 2, · · ·m,
+(4)
+Hj = s
+ n
+
+i=1
+wijxi −aj
+
+j = 1, 2, · · ·n1,
+(5)
+W updata
+ij
+= Wij −η ∂L
+∂Wij
+,
+(6)
+θupdata
+i
+= θi −η ∂L
+∂θi
+,
+Figure 5, the global optimization algorithm encodes the 
+weights and thresholds of the BP neural network into 
+individuals, selects the individuals with higher fitness 
+through multiple iterative operations, assigns them to 
+the neural network after decoding, and then performs 
+network training. Training neural networks based on 
+global optimal weights and thresholds can avoid local 
+optima and improve the stability of network training.
+3  Analysis of Factors Affecting Cutting
+In this study, the characteristics of rock slots at the ver-
+tical angle of impact of the premixed abrasive water jet 
+on the rock were selected, and its variation with respect 
+to the parameters of the premixed abrasive water jet 
+was analyzed. Using range analysis and variance analy-
+sis, the best sequence and combination of premixed 
+abrasive water jet rock cutting were determined. There 
+is an inherent relationship between the working pres-
+sure, target distance, and lateral velocity of the abrasive 
+jet, but their correlation is relatively small. In contrast, 
+individual changes in different parameters have a more 
+significant effect on the rock fragmentation effect. 
+The impact of the working pressure of the premixed 
+abrasive water jet on the rock fragmentation effect is 
+reflected in the maximum impact velocity, the impact 
+of the linear velocity on the rock is reflected mainly in 
+the impact time, and the impact of the target distance 
+on the rock is related mainly to the nozzle structure 
+and reflux collision. Moreover, analyzing the correla-
+tion between various parameters of the abrasive jet and 
+the impact of rock fragmentation cannot yield valuable 
+results. Therefore, this study analyzes the impact of 
+each parameter alone on the effect of rock cutting.
+Figure 5  Optimization flow chart of the BP neural network
+
+=== PAGE 7 ===
+Page 7 of 18
+Jiang et al. Chinese Journal of Mechanical Engineering           (2025) 38:69 
+	
+3.1  Depth
+Table  2 shows the influences of pressure, target dis-
+tance, and linear velocity (speed × radius of rotation) of 
+a premixed abrasive water jet on granite cutting depth 
+according to range analysis. (The primary and secondary 
+influences on the granite cutting depth were the working 
+pressure, target distance, and linear velocity). The greater 
+the range value is, the greater the influence of this param-
+eter on the rock-cutting depth. According to Table 2, the 
+combination of parameters with a premixed abrasive 
+water jet working pressure of 35 MPa, a target distance 
+of 4 mm, and a linear velocity of 1.08 m/min within the 
+experimental range can maximize the granite cutting 
+depth.
+As shown in Figure  6, the influence trend of differ-
+ent factors on the cutting depth was plotted accord-
+ing to the arithmetic mean value k of the test results. 
+The cutting depth of granite generally increases with 
+increasing working pressure, increases first and then 
+decreases with increasing target distance, peaking when 
+the target distance is 4 mm. Notably, the granite cutting 
+depth increases with increasing target distance from 
+8 mm–10 mm. However, when the target distance con-
+tinues to increase, the premixed abrasive water jet loses 
+its rock-breaking ability, and the granite surface no longer 
+forms obvious cuttings. Since the rock-breaking ability 
+of the premixed abrasive water jet with a target distance 
+of more than 10 mm within the scope of the test equip-
+ment was lost and exceeded the scope of the experimen-
+tal research, this study does not show the changing trend 
+of the rock-cutting depth beyond the target distance of 
+10 mm. The lower the linear velocity was, the longer the 
+continuous impact time of the premixed abrasive water 
+jet on the rock was, and the larger the characteristic 
+index value of the rock cutting depth should theoretically 
+be. This may be due to the unstable mass concentration 
+of premixed abrasive water jet during the test, as the rock 
+cutting depth in the range of 4.25–5.28 m/min increased 
+with increasing linear velocity, but the rock cutting depth 
+decreased with increasing linear velocity, which was still 
+consistent with the theoretical analysis results.
+The higher the outlet pressure of the water pump is, 
+the higher the velocity of the premixed abrasive water jet 
+at the nozzle outlet is, and the greater the impact force 
+when it contacts the rock, making it easier for the rock 
+to break and form a groove. After being ejected from the 
+nozzle, the premixed abrasive water jet is affected by the 
+air resistance, and its impact velocity continuously decays 
+and diverges roughly into a conical shape. The velocity 
+attenuation of water and abrasive particles located at the 
+edge of the jet is more severe. Although the area of the 
+premixed abrasive water jet hitting the rock increases 
+with increasing target distance, it cannot cause greater 
+damage to the rock because of the decrease in impact 
+velocity. The linear velocity of a premixed abrasive water 
+jet that cuts rock affects mainly the time to strike the 
+rock. After the initial groove morphology is formed, the 
+rock further fractures and deepens the groove depth 
+under the dynamic load formed by the continuous 
+impact of the abrasive water jet. However, as the depth of 
+the groove increases, the distance of the premixed abra-
+sive water jet hitting the rock also does not increase, and 
+the motion of the residual jet in the narrow slit affects the 
+speed of the abrasive jet hitting the rock. Therefore, as 
+the linear velocity increases, the depth of the rock groove 
+continuously becomes shallower.
+To verify the accuracy of the factor combination 
+obtained from the range analysis, this study conducted 
+variance analysis on the granite orthogonal test data. The 
+significance of each factor was obtained through the F 
+test. The smaller the sig value is, the greater the influence 
+of the corresponding factor on the rock-cutting charac-
+teristic index. From Table 3, the order of influence on the 
+granite cutting depth was still pressure, target distance, 
+and linear velocity, which was consistent with the range 
+analysis.
+Table 2  Range analysis of the granite cutting depth
+Index
+Average
+Pressure
+Target 
+distance 
+(mm)
+Linear 
+velocity (m/
+min)
+Cutting depth (mm)
+K1
+4.07
+8.7
+14.5
+K2
+11.07
+15.09
+13.57
+K3
+10.84
+11.59
+8.94
+K4
+13.35
+8.19
+8.94
+K5
+18.24
+14
+11.62
+k1
+0.81
+1.74
+2.9
+k2
+2.21
+3.02
+2.71
+k3
+2.17
+2.32
+1.79
+k4
+2.67
+1.64
+1.79
+k5
+3.65
+2.8
+2.32
+Range
+2.84
+1.38
+1.11
+Order
+Pressure, Target distance, Linear velocity
+Scheme
+35 MPa, 4 mm, 1.08 m/min
+Figure 6  Trend of granite cutting depth
+
+=== PAGE 8 ===
+Page 8 of 18
+Jiang et al. Chinese Journal of Mechanical Engineering           (2025) 38:69 
+Using the same analysis method, we obtained the 
+best cutting parameters and the primary and secondary 
+order of factors for other materials in the test range. As 
+shown in Table 4, the maximum impact on the rock cut-
+ting depth within the test range was the working pressure 
+of the abrasive water jet, while the optimal target dis-
+tance and cutting line speed corresponding to different 
+strength materials were not the same. Notably, the per-
+formance of a premixed abrasive water jet with a mini-
+mum target distance may not be the best.
+As shown in Figure  7, the cutting depth of the blue-
+stone increases with the working pressure of the abra-
+sive water jet, and the changing trend was more obvious 
+than that of the granite, and the cutting depth of the 
+bluestone is deeper. Affected by the internal structure 
+of the nozzle, the premixed abrasive water jet may con-
+tinue to accelerate after the nozzle jet, but the accelera-
+tion distance of the external flow field is relatively short. 
+However, 6 mm was the best target distance for the pre-
+mixed abrasive water jet to cut the bluestone. Compared 
+with the best target distance of granite, the cutting depth 
+of bluestone increases with increasing target distance, 
+which is not caused by the continuous acceleration of 
+the external flow field of the abrasive water jet. Accord-
+ing to many observations of the process of premixed 
+abrasive water jet rotating slotted rock, the rebound 
+interference of the premixed abrasive water jet was very 
+severe (the nozzle surface of the tungsten steel material 
+was worn) at a small target distance. The rebound impact 
+space of the premixed abrasive water jet was small at a 
+small target distance, which intensified the collision 
+between the rebound jet and the impact jet. Although 
+the impact velocity of the premixed abrasive water jet 
+will be attenuated by increasing the target distance, the 
+impact velocity of the rebound jet can be reduced. The 
+reason may be that the rock cutting depth increases with 
+increasing target distance within the range of 2  mm−6 
+mm (this phenomenon is reflected in the rock materi-
+als). The trend chart of the cutting depth of the bluestone 
+reveals that with increasing linear speed, rock cutting 
+tends to decrease, and the rate of decrease is greater 
+than 4.25 m/min. Rocks with lower hardnesses are more 
+likely to form grooves under the impact of abrasive water 
+jets. Compared with the variation trend of the cutting 
+depth in granite, the cutting groove of rock with a lower 
+strength exhibited a more obvious trend of variation with 
+the working parameters of the abrasive water jet, and the 
+curve was steeper. It can be concluded that rocks with 
+lower hardness values are more sensitive to changes in 
+premixed abrasive water jet parameters.
+The cutting depths of hard rock and soft rock within 
+the test range were quite different, and the combina-
+tion analysis had difficulty highlighting the change rule 
+of the cutting depth of hard rock, so the hard rock was 
+analyzed separately. To compare the change rule of the 
+cutting depth of low-strength materials with the param-
+eters of abrasive water jets more vividly, a combina-
+tion analysis of limestone, sandstone, and concrete was 
+carried out. As shown in Figure 8, the cutting depth of 
+materials with different strengths increased with increas-
+ing working pressure, and the cutting depth of materials 
+with lower strengths under the same working pressure 
+increased. The overall strength of the sandstone and con-
+crete was low. At the initial stage of increasing working 
+pressure, the cutting depth increased rapidly, and the rate 
+of increase was significantly greater than that of the lime-
+stone. Notably, the cutting depth of concrete was simi-
+lar to that of sandstone, and even the arithmetic average 
+of the cutting depth of sandstone under higher working 
+pressures was slightly greater than that of concrete.
+The tensile strength of the concrete and sandstone was 
+approximately 3 MPa, and the lower tensile strength may 
+be the main reason for the similar curve of the cutting 
+depth of the two materials with the working pressure. In 
+the process of the premixing abrasive water jet cutting 
+rock, the solid‒liquid mixture existing in the rock frac-
+ture hindered the process of the jet rock breaking to a 
+Table 3  Variance analysis results of the granite cutting depth
+“Sig.” represents the significance of the factor
+Factor
+Mean square
+F
+Sig.
+Pressure
+5.23
+3.14
+0.1
+Target distance
+1.9
+1.14
+0.48
+Linear velocity
+1.32
+0.79
+0.72
+Table 4  Factor sequence and parameters
+Rock
+Best level and order
+Granite
+35 MPa, 4 mm, 1.08 m/min
+Bluestone
+35 MPa, 6 mm, 1.08 m/min
+Limestone
+35 MPa, 1.08 m/min, 6 mm
+Sandstone
+35 MPa, 1.08 m/min, 6 mm
+Concrete
+35 MPa, 2 mm, 2.15 m/min
+Figure 7  Trend of the bluestone cutting depth
+
+=== PAGE 9 ===
+Page 9 of 18
+Jiang et al. Chinese Journal of Mechanical Engineering           (2025) 38:69 
+	
+certain extent, and the phenomenon became more obvi-
+ous with increasing cutting depth. Although an increase 
+in the working pressure increases the impact speed of 
+the abrasive water jet, the obstacles to and buffers of the 
+air and the solid‒liquid mixture during cutting cause the 
+increase in the speed of the rock cutting depth to gradu-
+ally slow down above a certain cutting depth.
+As shown in Figure 9, the cutting depth of limestone 
+and sandstone first increases and then decreases with 
+increasing target distance, and the rock cutting depth of 
+the 6 mm target distance is the deepest. The reason why 
+the cutting depth of limestone and sandstone increases 
+with increasing target distance between 2 mm and 6 mm 
+is the same as that of hard rock. Above 6 mm, the larger 
+the target distance is, the more severe the impact veloc-
+ity attenuation when a premixed abrasive water jet cuts 
+the material, resulting in a reduction in the rock cutting 
+depth. Owing to the low strength of the concrete mate-
+rial, the cutting depth in the range of the target distance 
+of the orthogonal test always tends to decrease. The 
+reason for the difference in the trend of groove changes 
+between the concrete materials and rock is that the par-
+ticle size that makes up the concrete is relatively large. 
+Under the high-speed impact of the abrasive water jet, 
+forming large fragments is easy, which creates a relatively 
+large contact space between the nozzle and the material 
+to a certain extent, slowing the influence of the residual 
+jet on the subsequent jet. Therefore, the change curve of 
+the cutting depth does not exhibit a clear inflection point.
+As shown in Figure 10, the cutting depth of soft rock 
+decreases with increasing linear velocity, and the cutting 
+depths of sandstone and concrete with lower strengths 
+are deeper than that of limestone. However, the decline 
+rate of the concrete cutting depth with increasing linear 
+velocity was greater than that of the sandstone cutting 
+depth. The relationship curve between the cutting depth 
+and linear velocity was similar to an exponential decay 
+function curve. Therefore, the change law of the rock cut-
+ting depth with increasing linear velocity can be analyzed 
+through an exponential decay function fitting the experi-
+mental data.
+According to the variation in groove depth with veloc-
+ity in the three types of rock, rocks with lower hardness 
+values have deeper groove depths, and the lower the 
+hardness is, the greater the slope of the curve. Notably, 
+the groove depth of sandstone is relatively deep, but the 
+slope of its curve with the variation in the jet cutting line 
+velocity is relatively small. It can be inferred that rock 
+Figure 8  Variation in the cutting depth with the working pressure
+Figure 9  Trend of the variation in the cutting depth with the target 
+distance
+Figure 10  Trend of the change in the cutting depth with the linear 
+velocity
+
+=== PAGE 10 ===
+Page 10 of 18
+Jiang et al. Chinese Journal of Mechanical Engineering           (2025) 38:69 
+hardness is not the only factor affecting the cutting per-
+formance of the abrasive water jet. Based on the analy-
+sis of the relationship between linear velocity and rock 
+groove depth in the previous text, the homogeneity of 
+rock is also an important factor affecting rock groove 
+depth, and this phenomenon is more pronounced in 
+rocks with lower hardness.
+3.2  Width
+In practical applications, the impact of rock fragmenta-
+tion due to multiple cutting widths is much smaller than 
+the impact of the cutting depth. When the optimal work-
+ing parameters of premixed abrasive water jet rotary cut-
+ting were selected, the main criterion was the depth of 
+the cutting. Therefore, this study does not prioritize the 
+working parameters of abrasive water jets based on the 
+cutting width but rather analyzes the changing trend of 
+the cutting width of five materials with abrasive water 
+jets.
+As shown in Figure  11, the width of the granite cut-
+tings tends to expand with increasing working pressure 
+of the abrasive water jet, and the peak value of the rock 
+cutting width occurs at a working pressure of 28  MPa. 
+The cutting width decreases as the jet pressure continues 
+to increase, but the cutting width remains above 1.3 mm. 
+Affected by the air resistance, the premixed abrasive 
+water jet diffused with increasing distance, so the cut-
+ting width increased with increasing target distance. 
+The backflow of the premixed abrasive water jet impact-
+ing rock scours the formed rock and further expands the 
+rock cutting width. The contribution of the linear veloc-
+ity to the cutting width was reflected mainly in the effect 
+of backflow scouring, but the hard rock was not sensitive 
+to the time of backflow scouring, so the change in lin-
+ear velocity had no obvious impact on the cutting width 
+of the granite. At the initial stage of working pressure 
+increase, the cutting depth was shallow, and the impact 
+damage of the abrasive particles and water and backflow 
+scouring increased the cutting width. However, with 
+increasing pressure, the contact surface moves down-
+ward, and the increasing impact kinetic energy is used to 
+increase the cutting depth. The water layer formed in the 
+cutting had a certain buffering effect on the jet, which to 
+some extent weakened the backflow scouring ability of 
+the jet. Therefore, the rock cutting width decreases with 
+increasing pressure above 28 MPa.
+As shown in Figure 12, the cutting width of the blue-
+stone always increased with increasing pressure. The 
+increase in pressure caused the impact dynamic pressure 
+of the premixed abrasive water jet rise, resulting in an 
+increase in the stagnation pressure during cutting. Until 
+the pressure reaches the secondary crushing condition 
+of bluestone, this may be the main reason that the cut-
+ting width continues to increase with pressure. The width 
+of the bluestone cuttings increased with increasing tar-
+get distance, which conforms to the distribution law of 
+the water jet velocity field in the air domain. The cutting 
+width of the bluestone changed slightly with linear veloc-
+ity, which once again confirms that the cutting width of 
+the hard rock was less affected by backflow scouring.
+Compared with that of hard rock, the cutting width of 
+low-strength materials was significantly affected by the 
+working parameters of the premixed abrasive water jet 
+compared with hard rock. In this work, limestone, sand-
+stone, and concrete were analyzed together. As shown 
+in Figure 13, there was no obvious change in the ampli-
+tude of limestone cutting width with increasing pres-
+sure, and the cutting width was smaller than those of 
+sandstone and concrete. The amplitude of the cutting 
+width of the sandstone and concrete was maintained at 
+a high level, especially when the amplitude of the cutting 
+width of the concrete changed greatly. There is a signifi-
+cant "water hammer pressure" at the impact point when 
+the premixed abrasive water jet impacts the rock, caus-
+ing rapid surface damage and the formation of grooves. 
+After the premixed abrasive water jet cuts the rock, the 
+width of the cut basically changes. The impact point of 
+the premixed abrasive water jet continues to move down-
+ward and is no longer in contact with the edge of the rock 
+groove, gradually weakening the influence of the pump 
+pressure on the width of the rock groove. The impact of 
+changes in pump pressure on the depth of rock grooves 
+mainly includes the degree of damage caused by the 
+initial impact of the jet and the continuous erosion of 
+residual abrasive water jets. When the cutting depth was 
+shallow, the premixed abrasive water jet diffused along 
+the cutting area toward the free surface and continuously 
+impacted the edge of the cutting area, resulting in wider 
+Figure 11  Trend of granite cutting width
+Figure 12  Trend of the bluestone cutting width
+
+=== PAGE 11 ===
+Page 11 of 18
+Jiang et al. Chinese Journal of Mechanical Engineering           (2025) 38:69 
+	
+cutting when the working pressure was low. Although the 
+hysteresis pressure formed during cutting was favorable 
+for the secondary breaking of rock under higher pres-
+sure, a greater cutting depth had a greater impact on the 
+return velocity of the water jet, weakening the expansion 
+trend of the free surface cutting width. As shown in Fig-
+ure  13, after the pressure reached 28 MPa, the cutting 
+widths of the concrete, limestone, and sandstone tended 
+to decrease. The particle size of the concrete was quite 
+different, resulting in a large fluctuation in the cutting 
+width at the same position, which was the main reason 
+why the amplitude of the concrete cutting width fluctu-
+ated greatly.
+In Figure 14, there were many pockmarks on the con-
+crete surface, and the cutting surface was embedded with 
+large impurities, which caused large pieces of spalling in 
+some positions during the premixed abrasive water jet 
+rotary cutting process. The target distance at the edge 
+of the concrete was larger, and theoretically, the rock-
+cutting width here should be wider. However, some posi-
+tions were coincidentally opposite. The cutting at the 
+edge was narrow, and the cutting near the center of the 
+cutting was wide.
+As shown in Figure 15, the cutting width of limestone 
+increases with increasing target distance, whereas the 
+cutting widths of sandstone and concrete decrease first 
+and then increase. The cutting width of the sandstone 
+and concrete was maintained at a high level at a small 
+target distance. However, with increasing target distance, 
+the cutting width first decreases but then increases. 
+Theoretically, the smaller the target distance was, the 
+smaller the cutting width was, but the compressive and 
+tensile strengths of the concrete and sandstone were 
+lower. Under the influence of premixed abrasive water jet 
+backwash scouring, the cutting width of the sandstone 
+and concrete was greater. With increasing target distance, 
+the impact velocity attenuation of the premixed abrasive 
+water jet increased, and the contribution of the diffusely 
+distributed premixed abrasive water jet to the expansion 
+of the cutting width decreases, and the backflow scour-
+ing cannot further expand the cutting width, resulting 
+in a sudden decrease in the concrete cutting width with 
+increasing target distance. Through comprehensive anal-
+ysis, it can be concluded that soft rock is strongly affected 
+by rebound jet scouring at a small target distance. With 
+the continuous increase in the target distance, the cutting 
+width of sandstone and concrete is affected by the target 
+distance instead of rebound scouring.
+As shown in Figure 16, the cutting width of the lime-
+stone did not obviously change with the linear velocity. 
+However, the cutting width of the sandstone and concrete 
+Figure 13  Variation in the cutting width with the working pressure
+Figure 14  Concrete slotted surface
+Figure 15  Trend of the change in the cutting width with the target 
+distance
+
+=== PAGE 12 ===
+Page 12 of 18
+Jiang et al. Chinese Journal of Mechanical Engineering           (2025) 38:69 
+first increased and then decreased with increasing lin-
+ear velocity, and the change range of the concrete with a 
+lower strength was more obvious. According to the anal-
+ysis results of the trend chart of the cutting depth with 
+linear velocity in Figure 10, the cutting width increased 
+with decreasing cutting depth before the linear velocity 
+reached 4.25 m/min, which was consistent with the clas-
+sical conclusion that a fracture pit is funnel shaped under 
+the impact of the abrasive water jet. The greater the lin-
+ear velocity is, the shorter the time the jet impinges on 
+the material surface, which may be the main reason why 
+the cutting width of sandstone and concrete decreases 
+with increasing linear velocity above 4.25 m/min. Based 
+on the analysis of the influence of the pump pressure on 
+the width of the rock grooves in Section 3.2, the linear 
+velocity affects the width of the rock grooves mainly by 
+affecting the time required for the abrasive residual pre-
+mixed abrasive water jet to wash the edge of the rock 
+groove. However, rocks with higher hardness values are 
+less affected by backflow erosion.
+4  Prediction of Cutting Characteristics
+4.1  Network Construction and Data Preprocessing
+Figure 17 shows the single hidden layer BP neural network 
+structure determined according to the basic mechanical 
+parameters of the rock and the working parameters of the 
+abrasive water jet. Its input neurons include six parameters 
+( x1 −x6 ): compressive strength, tensile strength, pressure, 
+target distance, linear velocity, and angle of incidence. The 
+depth and width of the slit are the output neurons (y1 −y2) . 
+The weights and thresholds between the layers of the neu-
+ral network are shown. The hardness of rock in engineering 
+determines the excavation speed of rock tunnels, and the 
+uniaxial compressive strength and tensile strength are the 
+main parameters that characterize rock hardness. There-
+fore, among the numerous basic rock parameters, only 
+uniaxial compressive and tensile parameters are used as 
+output neurons of the network. The selection of abrasive jet 
+parameters was based on the convenience of adjustment in 
+practical applications. The parameters (diameter, concen-
+tration, and particle size) that are difficult to adjust quickly 
+at the excavation site were not used for model training. The 
+reasons are as follows. Changing the diameter requires the 
+machine to be stopped to replace the nozzle. At present, 
+the concentration values of premixed abrasive water jet 
+generating equipment are mostly fixed. Adjusting the parti-
+cle size requires not only equipment shutdown but also the 
+removal of residual abrasives from the tank and high-pres-
+sure pipe. The purpose of constructing a prediction model 
+is to provide the optimal parameter selection scheme for 
+premixed abrasive waterjet cutting of rocks based on a 
+real-time excavation environment. The effect of premixed 
+abrasive water jet cutting is fully utilized to reduce rock 
+strength and avoid excessive energy consumption due 
+to inappropriate jet parameter combinations. Therefore, 
+the premixed abrasive water jet parameters selected dur-
+ing the training of the neural network are easily adjust-
+able. Many parameters affect the rock-cutting index. To 
+improve mechanical rock-breaking devices in the future, 
+we will continue to supplement experiments to build more 
+parameter-controlled predictive models. The heterogeneity 
+and anisotropy of rocks often lead to abnormal test results 
+in abrasive water jet-cutting rock tests. Although repeated 
+experiments were conducted on abnormal cuttings in the 
+experiment, the possibility that there were inappropri-
+ate statistical data cannot be avoided. For example, during 
+the working process of a premixed abrasive water jet, the 
+instability of mass concentration often occurs, especially in 
+the starting stage of the system. This phenomenon caused 
+abnormal cuttings in the test process. The existence of 
+abnormal data points affects the training process of neural 
+networks and the accuracy of prediction results. However, 
+Figure 16  Variation trend of the cutting width with the linear 
+velocity
+Figure 17  Prediction model diagram of the rock cutting index 
+for premixed abrasive waterjet rotary cuttings
+
+=== PAGE 13 ===
+Page 13 of 18
+Jiang et al. Chinese Journal of Mechanical Engineering           (2025) 38:69 
+	
+the data on abnormal rock-cutting characteristics were not 
+all from concentration instability. Some abnormal cutting 
+data may be used to explain the special phenomenon of 
+premixed abrasive water jet cutting rock; for example, the 
+best target distance was not the minimum target distance. 
+Therefore, it is still necessary to preprocess the experimen-
+tal data before training the neural network (appropriately 
+eliminating some cutting data). The removal of abnormal 
+data was based on the analysis of the cutting trend in Sec-
+tion 3. The data with significant differences in the trends of 
+the rock-cutting indicators were removed.
+The abnormal data of the rock cutting depth and width 
+do not correspond to the same experimental group. Con-
+sidering the number of training samples and the accu-
+racy of the model, the six-input and two-output neural 
+network models were divided into two six-input and 
+one-output neural networks in this study, and prediction 
+models for the rock cutting depth and width were estab-
+lished. Training neural networks with a large amount of 
+experimental data can yield more accurate prediction 
+models, which is common knowledge. However, obtain-
+ing a large amount of experimental data for premixed 
+abrasive water jet cutting of five types of rocks is diffi-
+cult and costly. In this study, only 500 sets of data were 
+obtained by collecting the cutting characteristics of five 
+types of rock. To improve the performance of the predic-
+tion model, some abnormal data were removed by pre-
+processing the experimental data, making the training set 
+more regular. The final prediction data of the rock cutting 
+depth were from 486 groups, and the prediction data of 
+the cutting width were from 437 groups. Ten sets of data 
+each are used for validation, and the remaining data are 
+used for training the neural network.
+The input parameters had different units and value 
+ranges and even had large magnitude differences. To 
+avoid the loss of sample data due to the small weight of 
+the samples with large values during the training of the 
+neural network, this study used Eq. (1) to normalize the 
+sample data and transform the input parameters into 
+dimensionless scalars.
+where xmin and xmax are the upper and lower boundaries 
+of the data, respectively, and xi and x∗
+i are the data values 
+before and after normalization, respectively.
+The parameters to be adjusted in the training process 
+of the BP neural network included the training function, 
+transfer function, number of hidden layer neurons, train-
+ing times, and target error. The training function has a 
+great influence on the calculation efficiency and predic-
+tion accuracy of the network, and the selection of the 
+training function directly affects the training speed of the 
+(7)
+x∗
+i = 2(xi −xmin)
+xmax −xmin
+−1,
+network. To determine the appropriate neural network 
+training function, this study took the rock-cutting width 
+as the prediction target, tested the three commonly used 
+training functions, and calculated the prediction error of 
+each sample point.
+The training function adjusts the weights and thresh-
+olds of the neural network based on the training error 
+so that the error function value gradually decreases. The 
+transfer function is used to convert input parameters 
+into intervals (0, 1), making it easier for input neurons 
+to participate in neural network training. To improve the 
+stability and accuracy of neural networks, we compared 
+commonly used training functions (trainbr, trainrp, 
+trainlm) and transfer functions (tansig, logsig, purelin). 
+It should be further explained that Bayesian regulariza-
+tion (BR) algorithm  is a training algorithm based on 
+Bayesian methods. This algorithm can reduce the risk of 
+overfitting and improve the model’s generalization abil-
+ity. Resilient backpropagation (RP) is used to eliminate 
+the impact of the gradient modulus on network train-
+ing and improve training speed. The Levenberg Mar-
+quardt (LM) algorithm combines Newton’s method and 
+the gradient descent method to improve training speed 
+and achieve higher accuracy. Tansig, Logsig and Purelin 
+represent tangent functions, logarithmic functions, and 
+linear functions, respectively. As shown in Figure 18, the 
+BP neural network trained by the trainrp function had 
+a relatively large prediction error for test datasets No. 6 
+and No. 7, and the maximum value reached 27%. Dur-
+ing many tests, the trainrp function had data points with 
+large prediction errors, which did not meet the actual 
+engineering requirements. The prediction errors of the 
+neural network trained by the trainbr and trainlm func-
+tions were relatively small. Moreover, the prediction 
+error of the cutting width of the network trained by the 
+trainlm function was only large at test points No. 3 and 
+No. 9, and the prediction error of the other test points 
+was less than 6%. The training speed of the trainbr func-
+tion was the fastest, but the average level of each predic-
+tion error fluctuated greatly. The advantage of the trainlm 
+was that the neural network trained by this function was 
+relatively stable in terms of the average prediction error. 
+Finally, the trainlm function was selected as the train-
+ing function of the BP neural network. In this study, the 
+three commonly used transfer functions were tested with 
+multiple groups of predictions, and the average value of 
+the prediction error was calculated. After many tests, the 
+average prediction error of the output layer and the hid-
+den layer was approximately 6% when the tansig or the 
+logsig was selected as the transfer function, but the pure-
+lin function of the output layer was a better choice.
+
+=== PAGE 14 ===
+Page 14 of 18
+Jiang et al. Chinese Journal of Mechanical Engineering           (2025) 38:69 
+4.2  Comparison and Analysis of Various Network Models
+In this study, the prediction error and calculation effi-
+ciency of GA, PSO, and BP neural networks without opti-
+mization were compared to determine the appropriate 
+prediction model for rock-cutting characteristics. Two 
+groups were randomly selected from the orthogonal test 
+data of five materials to form a verification set. Generally, 
+the overall prediction effect of the neural network on the 
+test data in the training set was better than that of the 
+verification set. In addition, the prediction performance 
+of the neural network on the training set can reflect 
+whether the training data have obvious searchable trends. 
+A comparison of the prediction effect of the verification 
+set can verify whether there are many abnormal data in 
+the training samples and whether the selection of the 
+verification set is reasonable. In this work, the prediction 
+effects of the BP neural network on the training set and 
+the verification set were compared, with the rock cutting 
+depth as the prediction target. As shown in Figure 19, the 
+prediction results of 10 samples in the training set only 
+had large errors at No. 3 and No. 7, and the coincidence 
+between the predicted values and the actual values at 
+other points was relatively high, whereas there were large 
+errors between the actual values and the predicted values 
+of many test data in the validation set. The average pre-
+diction error of the neural network in the training set was 
+8.7%, and the prediction error of the test data in the vali-
+dation set was 22.3%. The comparison results revealed 
+that the number of validation set samples selected in this 
+study was reasonable, and the validation set samples were 
+randomly sampled (the internal logic of the validation set 
+was not enhanced by selecting specific data).
+In the process of multiple trainings of the BP neural 
+network, three kinds of prediction effects were compared 
+and analyzed. As shown in Figure 20, Network 2 had the 
+best prediction effect, followed by Network 1 and Net-
+work 3. In the training process, the overall experimen-
+tal prediction effect of the No. 2 network was good, but 
+some data points still had large errors. The prediction 
+performance of the No. 3 network was due mainly to the 
+premature end of neural network training caused by the 
+local optimal solution, which led to the failure of neural 
+network construction, but the frequency of this phenom-
+enon was relatively low. The prediction performance of 
+the No. 1 network was between those of No. 2 and No. 
+3, its occurrence frequency was high, and the prediction 
+effect fluctuated greatly. These three BP neural network 
+prediction effects are three typical examples of the pro-
+cess of multiple network training. Affected by the local 
+optimization of the algorithm, the non-optimized BP 
+Figure 18  Comparison of prediction errors
+Figure 19  Comparison of prediction effects
+Figure 20  Comparison of BP neural network predictions
+
+=== PAGE 15 ===
+Page 15 of 18
+Jiang et al. Chinese Journal of Mechanical Engineering           (2025) 38:69 
+	
+neural network does not perform well in the prediction 
+of the rock-cutting characteristic index.
+The non-optimized BP neural network was trained 
+many times, and the neural network with the best predic-
+tion performance was selected to predict the rock-cutting 
+characteristics. As shown in Figure 21, the average pre-
+diction errors of the rock depth and cutting width were 
+22.3% and 5.8%, respectively. The figure shows that the 
+BP neural network with the best prediction performance 
+still has a large prediction error for some samples at the 
+rock cutting depth. Notably, the performance of the BP 
+neural network in terms of the prediction error of the 
+rock cutting width was better than that of the rock cut-
+ting depth. This phenomenon revealed that the change 
+in rock cutting depth with increasing rock properties 
+and premixed abrasive water jet working parameters was 
+more complex or that the regularity of the data was weak.
+The weights and thresholds of the BP neural network 
+are encoded into individuals to form the optimization 
+samples of the global search algorithm. After the screen-
+ing of the optimization algorithm, decoding the globally 
+optimized samples and endowing the BP neural network 
+with network training again can reduce the occurrence 
+probability of the local optimal solution. As shown in 
+Figure  22, the average errors of the BP neural network 
+optimized by the PSO and GA algorithms to predict the 
+rock cutting depth were 18.7% and 13.3%, respectively. In 
+terms of the average prediction error, the neural network 
+optimized by the PSO and CA algorithms reduced the 
+overall prediction error of the rock cutting depth, and the 
+genetic algorithm had a better effect. Compared with the 
+prediction error of the non-optimized neural network, 
+the peak value of the prediction error of the optimized 
+neural network was significantly reduced. After many 
+tests, the BP neural network optimized by the PSO and 
+GA eliminates the prediction phenomenon of the No. 3 
+network in Figure 21 in the process of rock cutting depth 
+prediction. However, the average value of the prediction 
+error of the expected output of the neural network still 
+fluctuates. The network prediction effect in Figure 22 was 
+taken from the best value of multiple predictions. Nota-
+bly, the prediction effect of the BP network optimized by 
+the GA was not always better than that of the neural net-
+work optimized by the PSO.
+As shown in Figure 23, the average prediction errors 
+of the BP neural network after optimization of the 
+PSO and GA algorithms were 6.83% and 5.4%, respec-
+tively. In terms of the rock cutting width, the average 
+error predicted by the optimized neural network was 
+close to that predicted by the unoptimized neural net-
+work, but the application of the optimization algorithm 
+maintained the average level of the prediction error 
+at approximately 6%, and the fluctuation range was 
+small. Notably, the optimized neural network model 
+performed relatively well in predicting the rock cut-
+ting depth. The main reason for this phenomenon is 
+that some input parameters of the neural network have 
+a significant effect on the depth of rock cutting, and 
+many additional factors affect the depth of cutting, such 
+as the water hammer effect, hydraulic wedge effect, and 
+rebound collision of abrasive particles. Therefore, the 
+relationship between the depth of rock cutting and the 
+input parameters of the neural network becomes more 
+complex, resulting in optimized prediction models for 
+the width and depth of rock cutting.
+The obvious conclusion is that applying the optimi-
+zation algorithm increases the prediction accuracy of 
+the BP neural network. A network model with high 
+prediction accuracy can also be obtained after many 
+Figure 21  Prediction error of BP neural network cutting
+Figure 22  Comparison of prediction errors of the PSO/GA-BP 
+cutting depth
+
+=== PAGE 16 ===
+Page 16 of 18
+Jiang et al. Chinese Journal of Mechanical Engineering           (2025) 38:69 
+neural networks are debugged and the number of train-
+ing iterations of the network is increased; however, this 
+will undoubtedly take much time. Therefore, the appli-
+cation of the optimization algorithm has an important 
+role in improving the prediction efficiency and stabil-
+ity. Unlike the prediction of robot joint coordinates, in 
+the field of rock fragmentation, the accuracy require-
+ment for predicting the rock characteristic parameters 
+(slot width and slot depth) of abrasive jet cutting is not 
+high. A prediction depth error of 13.3% and a slot width 
+error of 5.4% are both acceptable. Owing to the limited 
+power of the water pump, the pressure range studied 
+in this article is relatively small, which makes research 
+on this factor incomplete. In the future, experiments 
+on premixed abrasive water jet cutting of rocks under 
+larger pumps will be conducted to obtain more com-
+prehensive data on rock-cutting grooves and further 
+analyze the impact of this factor on the performance of 
+premixed abrasive water jet cutting grooves. Moreover, 
+the number of input neurons is increased on the basis 
+of actual operating conditions, the training set of pre-
+diction models is expanded, and more novel algorithms 
+are used to explore and obtain models with better pre-
+diction accuracy.
+5  Conclusions
+This work analyzed the performance of premixed abra-
+sive water jet cutting of hard and soft rock. A neural 
+network prediction model of cutting characteristics, 
+including rock strength parameters, was established. The 
+prediction performances of the GA-BP, PSO-BP, and BP 
+neural networks without optimization were compared 
+and analyzed.
+(1)	 The optimal order of factors and specific values 
+of different materials used for abrasive water jet 
+rotary cutting differ. In the range of the test, the 
+cutting depth increases nonlinearly with increasing 
+working pressure, decreases with increasing linear 
+velocity, and increases first and then decreases with 
+increasing target distance. The cutting depth of 
+concrete always tends to decrease with increasing 
+target distance.
+(2)	 Rock strength is an important factor affecting the 
+cutting performance of abrasive water jets, and it 
+affects mainly the rate of change in groove charac-
+teristics. The influence of pressure on the cutting 
+width is reflected mainly in the stagnation pres-
+sure, reflux velocity, and time during cutting, and 
+the cutting width of soft rock is more sensitive to 
+changes in working pressure. The cutting width of 
+low-strength materials is strongly affected by back-
+flow scouring at a small target distance, and the 
+cutting width at a large target distance is affected 
+mainly by the impact distance. In addition, the 
+influence of the linear speed on the cutting width is 
+not obvious.
+(3)	 The optimized BP neural network has better predic-
+tion performance. The average level of the GA-BP 
+neural network prediction error for the rock cutting 
+depth and width index is 13.3% and 5.4%, respec-
+tively, whereas GA-BP is not better than PSO-BP 
+every time.
+Acknowledgements
+The author sincerely thanks the reviewers for their critical discussion and read-
+ing during the submission process of the manuscript. The review comments 
+make this article more in line with the standards of scientific research articles.
+Authors’ Contributions
+Hongxiang Jiang was in charge of the whole trial; Huihe Zhao wrote the 
+manuscript; Xiaodi Zhang was responsible for reviewing the format of the 
+article; Zijian Wu assisted in editing the article; Mingjin Zhao assisted with 
+laboratory analyses. All authors read and approved the final manuscript.
+Funding
+Supported by Jiangsu Provincial Natural Science Foundation (Grant No. 
+BK20231497), Jiangsu Provincial Post Graduate Research & Practice Innovation 
+Program (Grant No. KYCX25_2982), China University of Mining and Technology 
+Graduate Innovation Program (Grant No. 2025WLKXJ094), National Natural Sci-
+ence Foundation of China (Grant No. 51975573), National Key R&D Program of 
+China (Grant No. 2022YFC2905600), and Priority Academic Program Develop-
+ment of Jiangsu Higher Education Institute of China.
+Data availability
+The computational data used in this study will be made available on request.
+Declarations
+Competing Interests
+The authors declare no competing financial interests.
+Figure 23  Comparison of the prediction errors of the PSO/GA-BP 
+cutting width
+
+=== PAGE 17 ===
+Page 17 of 18
+Jiang et al. Chinese Journal of Mechanical Engineering           (2025) 38:69 
+	
+Received: 10 March 2024   Revised: 21 April 2025   Accepted: 29 April 2025
+References
+	[1]	 Y L Jiang, J J Zeng, C J Xu, et al. Experimental study on TBM cutter pen-
+etration damage process of highly abrasive hard rock pre-cut by high-
+pressure water jet. B. Eng. Geol. Environ., 2022, 81(12): 511. https://​doi.​org/​
+10.​1007/​s10064-​022-​03022-1.
+	[2]	 J L Cheng, Y X Wang, L G Wang, et al. Penetration behaviour of TBM disc 
+cutter assisted by vertical precutting free surfaces at various depths and 
+confining pressures. Arch. Civ. Mech. Eng., 2021, 21: 1-18. https://​doi.​org/​
+10.​1007/​s43452-​020-​00172-5.
+	[3]	 S Y Liu, F Y Zhou, H S Li, et al. Experimental investigation of hard 
+rock breaking using a conical pick assisted by abrasive water jet. 
+Rock Mech. Rock Eng., 2020, 53: 4221-4230. https://​doi.​org/​10.​1007/​
+s00603-​020-​02168-2.
+	[4]	 H X Jiang, H H Zhao, K D Gao, et al. Numerical investigation of hard rock 
+breakage by high-pressure water jet assisted indenter impact using the 
+coupled SPH/FEM method. Powder Technol., 2020, 376: 176-186. https://​
+doi.​org/​10.​1016/j.​powtec.​2020.​08.​028.
+	[5]	 H S Li, S Y Liu, C W Guo. Effect of crack prefabrication by self-oscillating 
+pulsed jet on the temperature of conical pick during rock breaking 
+processes. Journal of China Coal Society, 2021, 46(7): 2136-2145. https://​
+doi.​org/​10.​13225/j.​cnki.​jccs.​jj20.​1937 (in Chinese)
+	[6]	 S Y Liu, H F Ji, D D Han, et al. Experimental investigation and application 
+on the cutting performance of cutting head for rock cutting assisted with 
+multi-water jets. Int. J. Adv. Manuf. Technol., 2018, 94: 2715-2728. https://​
+doi.​org/​10.​1007/​s00170-​017-​1072-9.
+	[7]	 X C Li, L Xiong, W W Xie, et al. Design and experimental study of core bit 
+for hard rock drilling in deep-sea. Journal of Marine Science and Engineer-
+ing, 2023, 11(2): 306. https://​doi.​org/​10.​3390/​jmse1​10203​06.
+	[8]	 S Kaya, G Aydin, I Karakurt. An experimental study on the cutting depth 
+produced by abrasive waterjet: How do abrasive and rock properties 
+affect the cutting process. Int. J. Adv. Manuf. Technol., 2023, 125(9-10): 
+4811-4823. https://​doi.​org/​10.​1007/​s00170-​023-​11053-5.
+	[9]	 T M Oh, G C Cho. Characterization of effective parameters in abrasive 
+waterjet rock cutting. Rock Mech. Rock Eng., 2014, 47: 745-756. https://​doi.​
+org/​10.​1007/​s00603-​013-​0434-3.
+	[10]	X H Liu, P Tang, Q Geng, et al. Effect of abrasive concentration on impact 
+performance of abrasive water jet crushing concrete. Shock. Vib., 2019. 
+https://​doi.​org/​10.​1155/​2019/​32851​50.
+	[11]	Z G Wang, W J Wang, J Ni, et al. Particle erosion behavior in viscoelastic 
+surfactant abrasive slurry jetting. Powder Technology, 2023, 416: 118230. 
+https://​doi.​org/​10.​1016/j.​powtec.​2023.​118230.
+	[12]	K Mohammadzadeh, S H Hashemabadi, S Akbari. CFD simulation of 
+viscosity modifier effect on cutting transport by oil-based drilling fluid 
+in wellbore. Journal of Natural Gas Science and Engineering, 2016, 29: 355-
+364. https://​doi.​org/​10.​1016/j.​jngse.​2015.​11.​011.
+	[13]	K Mohammadzadeh, S Akbari, S H Hashemabadi. Parametric study of 
+cutting transport in vertical deviated, and horizontal wellbore using CFD 
+simulations. Petroleum Science and Technology, 2021, 39(2): 31-48. https://​
+doi.​org/​10.​1080/​10916​466.​2020.​18310​21.
+	[14]	S Akbari, S H Hashemabadi. Temperature and pressure effects of drilling 
+fluid on cutting transport using CFD simulations. Asia‐Pacific Journal of 
+Chemical Engineering, 2017, 12(6): 980-992. https://​doi.​org/​10.​1002/​apj.​
+2140.
+	[15]	S Akbari, K Mohammadzadeh, S H Hashemabadi. Experimental study 
+and CFD investigation of environment-friendly drilling fluid. International 
+Journal of Oil, Gas and Coal Technology, 2020, 25 (4): 377-399. https://​doi.​
+org/​10.​1504/​IJOGCT.​2020.​111152.
+	[16]	Y F Tan, Y S Ni, W X Xu, et al. Key technologies and development trends 
+of the soft abrasive flow finishing method. Journal of Zhejiang University-
+Science A, 2023, 24(12): 1043-1064. https://​doi.​org/​10.​1631/​jzus.​A2300​038
+	[17]	H Hassanzadeh, S Joshi, S Akbari, et al. Buoyant miscible jets in a 
+viscoplastic medium with applications in plug and abandonment of 
+oil and gas wells. International Conference on Offshore Mechanics and 
+Arctic Engineering, American Society of Mechanical Engineers, 2023, 86915: 
+V009T11A030. https://​doi.​org/​10.​1115/​OMAE2​023-​101472.
+	[18]	J F Wu, L Li, Z C Yin, et al. Mass transfer mechanism of multiphase shear 
+flows and interphase optimization solving method. Energy, 2024, 292: 
+130475. https://​doi.​org/​10.​1016/j.​energy.​2024.​130475.
+	[19]	F S Ren, T C Fang, X Z Cheng. Study on rock damage and failure depth 
+under particle water-jet coupling impact. Int. J. Impact. Eng., 2020, 139: 
+103504. https://​doi.​org/​10.​1016/j.​ijimp​eng.​2020.​103504.
+	[20]	Y Ozcelik, M Gursel, R Ciccu, et al. Optimization of working parameters of 
+water jet cutting in terms of depth and width of cut. Proceedings of the 
+Institution of Mechanical Engineers, Part E: Journal of Process Mechanical 
+Engineering, 2012, 226(1): 64-78. https://​doi.​org/​10.​1177/​09544​08911​
+407706.
+	[21]	X H Liu, S Y Liu, H F Ji. Numerical research on rock breaking performance 
+of water jet based on SPH. Powder Technol., 2015, 286: 181-192. https://​
+doi.​org/​10.​1016/j.​powtec.​2015.​07.​044.
+	[22]	M K Li, H J Ni, G Wang, et al. Simulation of thermal stress effects in sub-
+merged continuous water jets on the optimal standoff distance during 
+rock breaking. Powder Technol., 2017, 320: 445-456. https://​doi.​org/​10.​
+1016/j.​powtec.​2017.​07.​071.
+	[23]	L Li, F X Wang, T Y Li, et al. The effects of inclined particle water jet on 
+rock failure mechanism: experimental and numerical study. J. Pet. Sci. Eng, 
+2020, 185: 106639. https://​doi.​org/​10.​1016/j.​petrol.​2019.​106639.
+	[24]	F X Wang, D P Zhou, X Zhou, et al. Rock breaking performance of TBM 
+disc cutter assisted by high-pressure water jet. Appl. Sci., 2020, 10(18): 
+6294. https://​doi.​org/​10.​3390/​app10​186294.
+	[25]	I C Engin, F Bayram, N E Yasitli. Experimental and statistical evaluation of 
+cutting methods about specific energy and rock properties. Rock Mech. 
+Rock Eng., 2013, 46: 755-766. https://​doi.​org/​10.​1007/​s00603-​012-​0284-4.
+	[26]	I C Engin. A correlation for predicting the abrasive water jet cutting depth 
+for natural stones. S. Afr. J. Sci., 2012, 108(9): 1-11. https://​doi.​org/​10.​4102/​
+sajs.​v108i9/​10.​692.
+	[27]	I Karakurt, G Aydin, K Aydiner. A study on the prediction of kerf angle in 
+abrasive waterjet machining of rocks. P. I. Mech. Eng. B-J. Eng., 2012, 226(9): 
+1489-1499. https://​doi.​org/​10.​1177/​09544​05412​454395.
+	[28]	G Aydin, I Karakurt, K Aydiner. Prediction of the cut depth of granitic rocks 
+machined by abrasive water jet (AWJ). Rock Mech. Rock Eng., 2013, 46: 
+1223-1235. https://​doi.​org/​10.​1007/​s00603-​012-​0307-1.
+	[29]	I Karakurt, G Aydin, K Aydiner. An investigation on the kerf width in abra-
+sive waterjet cutting of granitic rocks. Arab. J. Geosci., 2014, 7: 2923-2932. 
+https://​doi.​org/​10.​1007/​s12517-​013-​0984-4.
+	[30]	F C Wang, L C Li, X Zhou, et al. New application of abrasive slurry 
+jet in coal rocks breaking and prediction model of its rock breaking 
+ability. Arab. J. Sci. Eng., 2021, 46: 7227-7237. https://​doi.​org/​10.​1007/​
+s13369-​020-​05219-6.
+	[31]	G Aydin, I Karakurt, C Hamzacebi. Artificial neural network and regression 
+models for performance prediction of abrasive waterjet in rock cutting. 
+J. Adv. Manuf. Technol., 2014, 75: 1321-1330. https://​doi.​org/​10.​1007/​
+s00170-​014-​6211-y.
+	[32]	J Lin, X Zhou, H Zhang, et al. Study on ASJ cutting of TC18, based upon 
+multivariate nonlinear regression and SA-BP-AGA. Materials, 2019, 12(12): 
+1902. https://​doi.​org/​10.​3390/​ma121​21902.
+	[33]	M Hammouda, M Ghienne, J L Dion, et al. Linear regression and artificial 
+neural network models for predicting abrasive water jet marble drilling 
+quality. Adv. Mech. Eng., 2022, 14(9): 168781322211 23426.
+	[34]	Y Wang, L Wang, X Y Zhang. Modeling of processing parameters for the 
+cutting of rolled tungsten plates via abrasive water jet. AIP Adv., 2022, 
+12(9): 095103. https://​doi.​org/​10.​1063/5.​01140​50.
+	[35]	J Zhou, Y Dai, S Huang, et al. Proposing several hybrid SSA-machine 
+learning techniques for estimating rock cuttability by conical pick with 
+relieved cutting modes. Acta Geotech., 2022: 1-16. https://​doi.​org/​10.​
+1007/​s11440-​022-​01685-4.
+	[36]	W D Zhou, R H Wang, H Z Li, et al. Study on depth prediction of abrasive 
+water jet perforation using back propagation neural network. 2008 IEEE 
+Pacific-Asia Workshop on Computational Intelligence and Industrial Applica-
+tion, IEEE, 2008, 2: 892-896. https://​doi.​org/​10.​1109/​PACIIA.​2008.​216.
+	[37]	X J Liu, Q Q Fan, Y X Feng. Prediction of the cutting depth of abrasive 
+suspension jet using a BP artificial neural network. advanced materials 
+research. Trans. Tech. Publications Ltd., 2012, 500: 249-252.
+	[38]	H X Deng, P Yao, K Hai, et al. High-efficiency abrasive water jet milling 
+of aspheric RB-SiC surface based on BP neural network depth control 
+models. Int. J. Adv. Manuf. Technol., 2023, 126(7-8): 3133-3148. https://​doi.​
+org/​10.​1007/​s00170-​023-​11275-7.
+
+=== PAGE 18 ===
+Page 18 of 18
+Jiang et al. Chinese Journal of Mechanical Engineering           (2025) 38:69 
+	[39]	Y Z Chen, Y H Hu, S L Zhang, et al. Optimized erosion prediction with 
+MAGA algorithm based on BP neural network for submerged low-pres-
+sure water jet. Appl. Sci., 2020, 10(8): 2926. https://​doi.​org/​10.​3390/​app10​
+082926.
+	[40]	S S Deng, L H Guo, J F Guan, et al. Research on the prediction model for 
+abrasive water jet cutting based on GA-BP neural network. Chem. Eng. 
+Trans., 2016, 51: 1297-1302. https://​doi.​org/​10.​3303/​CET16​51217.
+	[41]	Y Jiang, S Deng, J Li, et al. Characteristic analysis and cutting-in predic-
+tion of abrasive water jet emergency cutting steel. Exp. Tech., 2022: 1-13. 
+https://​doi.​org/​10.​1007/​s40799-​022-​00585-2.
+	[42]	H Y Yin, S Li, G L Xu, et al. Study and application of deeply optimized 
+neural network in roof stability evaluation. Earth Science Informatics, 2024: 
+1-16. https://​doi.​org/​10.​1007/​s12145-​023-​01214-1.
+	[43]	L H Chen, M Z Cheng, Y Cai, et al. Multi−objective collaborative optimiza-
+tion design of key structural parameters for coal breaking and punching 
+nozzle. Processes, 2022, 10(5): 1036. https://​doi.​org/​10.​3390/​pr100​51036.
+	[44]	M Zhang. Classification prediction of rock-burst in railway tunnel based 
+on hybrid PSO-BP neural network. Geofluids, 2022. https://​doi.​org/​10.​
+1155/​2022/​46730​73.
+	[45]	D G Gu, Y T Tan, O V Tailakov. Displacement back analysis based on GA-BP 
+and PSO-BP neural network. Coal in the 21st Century: Mining, Processing 
+and Safety, 2016: 169-174.
+	[46]	H C Yan, H Z Liu, Y Li, et al. Inversion analysis of the in-situ stress field 
+around underground caverns based on particle swarm optimization 
+optimized back propagation neural network. Applied Sciences, 2023, 13(8): 
+4697. https://​doi.​org/​10.​3390/​app13​084697.
+Hongxiang Jiang,  born in 1987, is currently an associate profes-
+sor at College of Mechanical and Electrical Engineering, China University 
+of Mining and Technology, China. His research interests include high-
+pressure water jet technology, mechanical impact dynamics, and 
+special robots.
+Huihe Zhao,  born in 1996, is currently a PhD candidate at College 
+of Mechanical and Electrical Engineering, China University of Mining and 
+Technology, China.
+Xiaodi Zhang,  born in 1996, is currently a PhD candidate at China 
+University of Mining and Technology, China.
+Zijian Wu,  born in 1999, is a Postdoc at China University of Mining 
+and Technology, China.
+Mingjin Zhao,  born in 1999, is a master candidate at China Univer-
+sity of Mining and Technology, China.
